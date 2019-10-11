@@ -1,2 +1,2 @@
-# Sandwich-Hunter
-Sandwich Hunter
+# Sandwich-Hunters
+Sandwich Hunters
