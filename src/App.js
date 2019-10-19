@@ -1,8 +1,16 @@
 import React from 'react';
-import './App.scss';
+import GameTable from './components/GameTable/GameTable';
+import { TableProvider } from './components/GameTable/TableContext';
+import './scss/App.scss';
 
 function App() {
-  return <div className="App">hello world</div>;
+  return (
+    <div className="App">
+      <TableProvider>
+        <GameTable />
+      </TableProvider>
+    </div>
+  );
 }
 
 export default App;

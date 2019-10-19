@@ -1,0 +1,82 @@
+.GameTable {
+  // border: 1px solid white;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+  width: 100%;
+  &.flat {
+    margin-top: 3rem;
+    .controls {
+      margin-top: 11rem;
+      @media (max-width: 500px) {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.table-flip {
+  display: flex;
+  height: 23rem;
+  justify-content: center;
+  margin-top: -5rem;
+  perspective: 700px;
+  width: 100%;
+}
+
+.table-flip__body {
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  &.red {
+    transform: rotateY(180deg) rotateX(-44deg);
+    &.flat {
+      transform: rotateX(0deg) rotateY(180deg);
+      margin-top: 3rem;
+    }
+  }
+
+  &.green {
+    transform: rotateY(0deg) rotateX(44deg);
+    &.flat {
+      transform: rotateY(360deg) rotateX(0deg);
+      margin-top: 3rem;
+    }
+  }
+}
+
+.table-flip__body--green,
+.table-flip__body--red {
+  align-items: center;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 8rem;
+  width: 100%;
+  z-index: 12;
+
+  @media (max-width: 500px) {
+    margin-top: -4rem;
+  }
+
+  button {
+    background: goldenrod;
+    border: 2px solid #dab43b;
+    border-radius: 20%;
+    cursor: pointer;
+    margin: 0 1rem;
+    outline: none;
+    padding: 1rem;
+
+    &:hover {
+      background: lightgoldenrodyellow;
+    }
+  }
+}
