@@ -1,0 +1,24 @@
+@import './scss/reset';
+
+* {
+  box-sizing: border-box;
+  transition: all 0.2s linear;
+}
+
+*:before,
+*:after,
+* > * {
+  box-sizing: border-box;
+}
+
+body {
+  background: slateblue;
+  font-family: sans-serif;
+}
+
+.App {
+  align-items: center;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+}
