@@ -1,9 +1,24 @@
 import React from 'react';
 
-const GridSquare = ({ s }) => {
+const GridSquare = ({ i, s, onClick }) => {
+  const { id, open, active, myTable } = s;
   return (
-    <span key={s.id} className={s.active ? 'active' : ''}>
-      {!s.open && <div className="bread"></div>}
+    <span
+      key={id}
+      className={active ? 'GridSquare active' : 'GridSquare'}
+      onClick={() => onClick(i, id)}
+    >
+      {!open && myTable && <div className="bread"></div>}
+      {!open && active && !myTable && <div className="bread"></div>}
+      {!open && active && myTable && (
+        <>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <div className="bread"></div>
+        </>
+      )}
     </span>
   );
 };

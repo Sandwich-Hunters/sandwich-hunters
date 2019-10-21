@@ -1,5 +1,4 @@
 .GameTable {
-  // border: 1px solid white;
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -8,45 +7,55 @@
   &.flat {
     margin-top: 3rem;
     .controls {
-      margin-top: 11rem;
+      margin-top: 12rem;
       @media (max-width: 500px) {
-        margin-top: 0;
+        margin-top: 4rem;
       }
     }
   }
 }
 
-.table-flip {
+.table-flip__container {
   display: flex;
   height: 23rem;
   justify-content: center;
   margin-top: -5rem;
-  perspective: 700px;
-  width: 100%;
+  perspective: 900px;
+  @media (min-width: 900px) {
+    perspective: 500px;
+  }
 }
 
 .table-flip__body {
-  transition: transform 0.8s;
+  transition: transform 1.8s; //this number is important because the gridsquares take TIME to render, this animation length ensures all views are transitioned smoothly with no blanks
   transform-style: preserve-3d;
-  &.red {
-    transform: rotateY(180deg) rotateX(-44deg);
+  transform-origin: center; //this will affect all layout spacing
+  &.flat {
+    margin-top: 3rem;
+  }
+
+  &.showTop {
+    transform: rotateY(0deg) rotateX(44deg);
     &.flat {
-      transform: rotateX(0deg) rotateY(180deg);
-      margin-top: 3rem;
+      // transform: rotateY(360deg) rotateX(0deg);//more extreme animation
+      transform: rotateX(0deg);
     }
   }
 
-  &.green {
-    transform: rotateY(0deg) rotateX(44deg);
+  &.showBottom {
+    transform: rotateY(180deg) rotateX(-44deg);
     &.flat {
-      transform: rotateY(360deg) rotateX(0deg);
-      margin-top: 3rem;
+      transform: rotateX(0deg) rotateY(180deg);
     }
   }
 }
 
-.table-flip__body--green,
-.table-flip__body--red {
+.table-flip__body--bottom {
+  transform: rotateY(180deg);
+}
+
+.table-flip__body--top,
+.table-flip__body--bottom {
   align-items: center;
   backface-visibility: hidden;
   display: flex;
@@ -56,14 +65,17 @@
 }
 
 .controls {
+  align-items: center;
   display: flex;
   justify-content: center;
-  margin-top: 8rem;
+  margin-top: 9rem;
   width: 100%;
-  z-index: 12;
-
   @media (max-width: 500px) {
-    margin-top: -4rem;
+    margin-top: 0;
+  }
+
+  @media (min-width: 900px) {
+    margin-top: 10.5rem;
   }
 
   button {
@@ -74,9 +86,31 @@
     margin: 0 1rem;
     outline: none;
     padding: 1rem;
-
+    z-index: 12;
     &:hover {
       background: lightgoldenrodyellow;
+    }
+  }
+
+  button.gingham-swatch {
+    width: 2rem;
+    height: 2rem;
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &.green {
+      background-image: url('../assets/green.png');
+    }
+    &.red {
+      background-image: url('../assets/red2.jpg');
+    }
+    &.black {
+      background-image: url('../assets/black2.png');
+    }
+    &.blue {
+      background-image: url('../assets/blue3.png');
+      background-size: 400px;
     }
   }
 }

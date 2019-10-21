@@ -1,5 +1,11 @@
-.GameGrid {
+@import './palette';
+
+.GameGrid,
+.MyGrid {
+  border-radius: 4px;
   display: grid;
+  grid-template-columns: 1fr 10fr 1fr;
+  grid-template-rows: 1fr 14fr 1fr;
 
   .top-labels {
     align-items: center;
@@ -19,6 +25,16 @@
     justify-content: space-around;
   }
 
+  .right-spacer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    grid-column: 3;
+    grid-row: 2;
+    justify-content: space-around;
+    width: 1.59rem;
+  }
+
   main {
     display: grid;
     grid-column: 2;
@@ -30,64 +46,97 @@
 
   label {
     align-items: center;
-    color: black;
+    color: $table__border;
     display: flex;
-    font-size: 1rem;
+    font-size: 0.75rem;
     justify-content: center;
-    @media (max-width: 500px) {
-      display: none;
-    }
-    &.top {
-      margin-bottom: 1rem;
-    }
     &.left {
-      margin-right: 1rem;
+      margin: 0 0.5rem;
     }
   }
 
-  span {
+  span.GridSquare {
     align-items: center;
-    background-image: url('../assets/green.png');
-    background-size: 210px; //magic number for 44px squares
+    background: $table;
+    border: 1px solid $table__border;
     display: flex;
     justify-content: center;
-    width: 44px;
-    height: 44px;
     margin: 0;
     padding: 0;
+    width: 44px;
+    height: 44px;
 
     @media (max-width: 500px) {
+      width: 33px;
+      height: 33px;
+    }
+    @media (max-width: 400px) {
       width: 30px;
       height: 30px;
-      background-size: 90px; //magic number for 30px squares
     }
-    @media (max-width: 350px) {
-      width: 28px;
-      height: 28px;
-      background-size: 140px; //magic number for 30px squares
+
+    &.active {
+      background: none;
+      border: none;
     }
+
     &:hover {
-      border: 2px inset white;
+      border: none;
+      background: none;
       cursor: pointer;
     }
   }
 
   span .bread {
-    border: 3px solid rgb(218, 180, 59);
-    background: goldenrod;
+    border: 3px solid $sandwich__crust;
+    // prettier-ignore
+    box-shadow: 
+		1px 1px $tomato,
+		3px 3px $lettuce,
+		4px 4px $cheese,
+		5px 5px $meat,
+		7px 7px $sandwich__crust;
+    background: $sandwich;
     border-radius: 20%;
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: 80%;
+    transform: translateX(-7px) translateY(-7px);
   }
 }
 
-.table-flip__body--red {
-  transform: rotateY(180deg);
-  span {
-    background-image: url('../assets/red2.jpg');
-    background-size: 420px; //magic number for 44px squares
-    @media (max-width: 500px) {
-      background-size: 260px; //magic number for 30px squares
-    }
+.MyGrid span.GridSquare {
+  background: none;
+  border: none;
+
+  &.active {
+    background: none;
+    border: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
   }
+
+  &:hover {
+    background: none;
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+}
+
+.MyGrid.green,
+.GameGrid.green {
+  background-image: url('../assets/green.png');
+}
+.MyGrid.red,
+.GameGrid.red {
+  background-image: url('../assets/red2.jpg');
+}
+.MyGrid.black,
+.GameGrid.black {
+  background-image: url('../assets/black2.png');
+  background-size: 600px;
+}
+.MyGrid.blue,
+.GameGrid.blue {
+  background-image: url('../assets/blue3.png');
 }
