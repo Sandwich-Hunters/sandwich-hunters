@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
 import React, { useContext } from 'react';
 import { TableContext } from './TableContext';
+import { randomSandwichPlacer } from './randomSandwichPlacer';
 import GameGrid from './GameGrid';
 import MyGrid from './MyGrid';
 import '../../scss/GameTable.scss';
@@ -41,6 +43,14 @@ const GameTable = () => {
               className={`gingham-swatch ${c}`}
             ></button>
           ))}
+        <span
+          aria-label="sandwich"
+          className="sandwich"
+          role="button"
+          onClick={newPlacement}
+        >
+          🥪
+        </span>
       </section>
     </div>
   );
@@ -57,6 +67,18 @@ const GameTable = () => {
 
   function flipIso() {
     setState({ ...state, iso: state.iso === 'iso' ? 'flat' : 'iso' });
+  }
+
+  function newPlacement() {
+    const { grid } = state;
+    const coordsArray = randomSandwichPlacer();
+    const coords = coordsArray.map(c => c.slice(3));
+    const updateGrid = grid.map(s => {
+      if (coords.includes(s.id)) {
+        return { ...s, open: false };
+      } else return { ...s, open: true };
+    });
+    setState({ ...state, grid: updateGrid });
   }
 };
 
