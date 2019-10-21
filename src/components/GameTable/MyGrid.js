@@ -1,21 +1,12 @@
 import React, { useContext } from 'react';
 import { TableContext } from './TableContext';
 import GridSquare from './GridSquare';
-import '../../scss/GameGrid.scss';
 
-const GameGrid = () => {
-  const [state, setState] = useContext(TableContext);
-  const { gameGingham, grid } = state;
-
-  const handleClick = (i, id) => {
-    console.log('GameGrid.js handleClick()', { i, id });
-    const newGrid = [...grid];
-    newGrid[i].active = true;
-    setState({ ...state, grid: newGrid });
-  };
-
+const MyGrid = ({ grid }) => {
+  const [state] = useContext(TableContext);
+  const { myGingham } = state;
   return (
-    <section className={`GameGrid ${gameGingham}`}>
+    <section className={`MyGrid ${myGingham}`}>
       <div className="top-labels">
         <label className="top">1</label>
         <label className="top">2</label>
@@ -45,11 +36,16 @@ const GameGrid = () => {
 
       <main>
         {grid.map((s, i) => (
-          <GridSquare key={s.id} i={i} s={s} onClick={handleClick} />
+          <GridSquare
+            key={s.id}
+            i={i}
+            s={{ ...s, myTable: true }}
+            onClick={e => e.preventDefault}
+          />
         ))}
       </main>
     </section>
   );
 };
 
-export default GameGrid;
+export default MyGrid;

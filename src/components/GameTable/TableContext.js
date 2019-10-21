@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import { boardMaker } from './boardMaker';
+const TableContext = React.createContext({});
 
-const TableContext = React.createContext({ view: 'green' });
-
-const coords = [
+const coordsArray = [
   '32517',
   '32527',
   '32537',
@@ -22,11 +22,22 @@ const coords = [
   '32291'
 ];
 
+const blankGrid = boardMaker(10);
+const coords = coordsArray.map(c => c.slice(3));
+const updateGrid = blankGrid.map(s => {
+  if (coords.includes(s.id)) {
+    return { ...s, open: false };
+  } else return s;
+});
+
 const TableProvider = props => {
   const [state, setState] = useState({
-    view: 'green',
+    view: 'showTop',
+    iso: 'flat',
+    grid: updateGrid,
     coords: coords,
-    iso: true
+    myGingham: 'blue',
+    gameGingham: 'red'
   });
   return (
     <TableContext.Provider value={[state, setState]}>
