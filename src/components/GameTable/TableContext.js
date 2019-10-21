@@ -41,6 +41,7 @@ const TableProvider = props => {
     iso: 'flat',
     grid: updateGrid,
     coords: coords,
+    allGingham: ['green', 'red', 'black', 'blue'],
     myGingham: 'blue',
     gameGingham: 'red'
   });
