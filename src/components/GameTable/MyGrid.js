@@ -37,7 +37,7 @@ const MyGrid = ({ grid }) => {
       <main>
         {grid.map((s, i) => (
           <GridSquare
-            key={s.id}
+            key={s.id + s.myTable + i}
             i={i}
             s={{ ...s, myTable: true }}
             onClick={e => e.preventDefault}
