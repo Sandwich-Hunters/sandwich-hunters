@@ -31,6 +31,7 @@ const GameTable = () => {
         {view === 'showTop' &&
           allGingham.map(c => (
             <button
+              key={c}
               onClick={() => flipGingham('gameGingham', c)}
               className={`gingham-swatch ${c}`}
             ></button>
