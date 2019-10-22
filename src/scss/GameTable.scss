@@ -1,4 +1,8 @@
+@import './palette';
+@import './mixins';
+
 .GameTable {
+  @include noSelect;
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -67,6 +71,7 @@
 .controls {
   align-items: center;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   margin-top: 9rem;
   width: 100%;
@@ -111,6 +116,16 @@
     &.blue {
       background-image: url('../assets/blue3.png');
       background-size: 400px;
+    }
+  }
+
+  span.sandwich {
+    font-size: 3rem;
+    cursor: pointer;
+    margin: 5px 1rem 0 1rem;
+    z-index: 12;
+    &:hover {
+      transform: scale(1.1);
     }
   }
 }

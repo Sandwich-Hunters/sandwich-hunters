@@ -45,7 +45,12 @@ const GameGrid = () => {
 
       <main>
         {grid.map((s, i) => (
-          <GridSquare key={s.id} i={i} s={s} onClick={handleClick} />
+          <GridSquare
+            key={s.id + s.myTable + i}
+            i={i}
+            s={s}
+            onClick={handleClick}
+          />
         ))}
       </main>
     </section>

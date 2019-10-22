@@ -1,12 +1,14 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
 import React, { useContext } from 'react';
 import { TableContext } from './TableContext';
+import { randomSandwichPlacer } from './randomSandwichPlacer';
 import GameGrid from './GameGrid';
 import MyGrid from './MyGrid';
 import '../../scss/GameTable.scss';
 
 const GameTable = () => {
   const [state, setState] = useContext(TableContext);
-  const { grid, coords, iso, view } = state;
+  const { allGingham, grid, coords, iso, view } = state;
   return (
     <div className={`GameTable ${iso === 'iso' ? 'iso' : 'flat'}`}>
       <section className="table-flip__container">
@@ -26,45 +28,29 @@ const GameTable = () => {
       <section className="controls">
         <button onClick={flipTable}>Flip</button>
         <button onClick={flipIso}>Iso / Flat</button>
-        {view === 'showTop' ? (
-          <>
+        {view === 'showTop' &&
+          allGingham.map(c => (
             <button
-              onClick={() => flipGingham('gameGingham', 'green')}
-              className="gingham-swatch green"
+              onClick={() => flipGingham('gameGingham', c)}
+              className={`gingham-swatch ${c}`}
             ></button>
+          ))}
+        {view === 'showBottom' &&
+          allGingham.map(c => (
             <button
-              onClick={() => flipGingham('gameGingham', 'red')}
-              className="gingham-swatch red"
+              key={c}
+              onClick={() => flipGingham('myGingham', c)}
+              className={`gingham-swatch ${c}`}
             ></button>
-            <button
-              onClick={() => flipGingham('gameGingham', 'black')}
-              className="gingham-swatch black"
-            ></button>
-            <button
-              onClick={() => flipGingham('gameGingham', 'blue')}
-              className="gingham-swatch blue"
-            ></button>
-          </>
-        ) : (
-          <>
-            <button
-              onClick={() => flipGingham('myGingham', 'green')}
-              className="gingham-swatch green"
-            ></button>
-            <button
-              onClick={() => flipGingham('myGingham', 'red')}
-              className="gingham-swatch red"
-            ></button>
-            <button
-              onClick={() => flipGingham('myGingham', 'black')}
-              className="gingham-swatch black"
-            ></button>
-            <button
-              onClick={() => flipGingham('myGingham', 'blue')}
-              className="gingham-swatch blue"
-            ></button>
-          </>
-        )}
+          ))}
+        <span
+          aria-label="sandwich"
+          className="sandwich"
+          role="button"
+          onClick={newPlacement}
+        >
+          🥪
+        </span>
       </section>
     </div>
   );
@@ -81,6 +67,18 @@ const GameTable = () => {
 
   function flipIso() {
     setState({ ...state, iso: state.iso === 'iso' ? 'flat' : 'iso' });
+  }
+
+  function newPlacement() {
+    const { grid } = state;
+    const coordsArray = randomSandwichPlacer();
+    const coords = coordsArray.map(c => c.slice(3));
+    const updateGrid = grid.map(s => {
+      if (coords.includes(s.id)) {
+        return { ...s, open: false };
+      } else return { ...s, open: true };
+    });
+    setState({ ...state, grid: updateGrid });
   }
 };
 
