@@ -6,11 +6,8 @@ export const randomSandwichPlacer = (typesArray = [5, 4, 6, 3, 2]) => {
 
   const collisionCheck = newCoord => {
     if (
-      ships.filter(coord => {
-        if (newCoord.substring(3) === coord.substring(3)) {
-          return coord;
-        }
-      }).length > 0
+      ships.filter(coord => newCoord.substring(3) === coord.substring(3))
+        .length > 0
     ) {
       return true;
     } else {
@@ -60,22 +57,18 @@ export const randomSandwichPlacer = (typesArray = [5, 4, 6, 3, 2]) => {
         if (prevCoord.slice(3, 4) === '9') {
           return prevCoord.slice(0, 3) + '0' + prevCoord.slice(4);
         } else return (parseInt(prevCoord, 10) + 10).toString();
-        break;
       case 1:
         if (prevCoord.slice(4) === '9') {
           return prevCoord.slice(0, 4) + '0';
         } else return (parseInt(prevCoord, 10) + 1).toString();
-        break;
       case 2:
         if (prevCoord.slice(3, 4) === '0') {
           return prevCoord.slice(0, 3) + '9' + prevCoord.slice(4);
         } else return (parseInt(prevCoord, 10) - 10).toString();
-        break;
       case 3:
         if (prevCoord.slice(4) === '0') {
           return prevCoord.slice(0, 4) + '9';
         } else return (parseInt(prevCoord, 10) - 1).toString();
-        break;
       default:
         console.log('addCoord switch error');
     }
