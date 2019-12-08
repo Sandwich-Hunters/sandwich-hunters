@@ -1,7 +1,7 @@
 import React from 'react';
-import GameTable from './components/GameTable/GameTable';
-import { TableProvider } from './components/GameTable/TableContext';
-import './scss/App.scss';
+import GameTable from './GameTable';
+import { TableProvider } from './TableContext';
+import '../../scss/App.scss';
 
 function App() {
   return (
