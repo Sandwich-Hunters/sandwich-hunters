@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { TableContext } from './TableContext';
+import { useSelector } from 'react-redux';
+
 import GridSquare from './GridSquare';
 
 export default function MyGrid({ grid }) {
-  const [state] = useContext(TableContext);
-  const { myGingham } = state;
+  const myGingham = useSelector((state) => state.myGingham);
+
   return (
     <section className={`MyGrid ${myGingham}`}>
       <div className="top-labels">

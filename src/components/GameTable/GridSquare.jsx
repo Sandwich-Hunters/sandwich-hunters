@@ -1,18 +1,19 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { TableContext } from './TableContext';
+import { useDispatch } from 'react-redux';
 
 export default function GridSquare({ i, s }) {
-  const [state, setState] = useContext(TableContext);
-  const { grid } = state;
   const {
-    id, open, active, myTable,
+    //
+    id,
+    open,
+    active,
+    myTable,
   } = s;
+  const dispatch = useDispatch();
 
-  const handleClick = (index) => {
-    const newGrid = [...grid];
-    newGrid[index].active = true;
-    setState({ ...state, grid: newGrid });
+  const handleUpdateGrid = (index) => {
+    dispatch({ type: 'UPDATE_GRID', payload: { index } });
   };
 
   return (
@@ -20,8 +21,8 @@ export default function GridSquare({ i, s }) {
       tabIndex="0"
       key={id}
       className={active ? 'GridSquare active' : 'GridSquare'}
-      onClick={() => handleClick(i)}
-      onKeyPress={() => handleClick(i)}
+      onClick={() => handleUpdateGrid(i)}
+      onKeyPress={() => handleUpdateGrid(i)}
       role="gridcell"
     >
       {!open && myTable && <div className="bread" />}
