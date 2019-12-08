@@ -12,8 +12,8 @@ export default function GridSquare({ i, s }) {
   } = s;
   const dispatch = useDispatch();
 
-  const handleUpdateGrid = (index) => {
-    dispatch({ type: 'UPDATE_GRID', payload: { index } });
+  const handleClickGrid = (index) => {
+    dispatch({ type: 'CLICK_GRID', payload: { index } });
   };
 
   return (
@@ -21,8 +21,8 @@ export default function GridSquare({ i, s }) {
       tabIndex="0"
       key={id}
       className={active ? 'GridSquare active' : 'GridSquare'}
-      onClick={() => handleUpdateGrid(i)}
-      onKeyPress={() => handleUpdateGrid(i)}
+      onClick={() => handleClickGrid(i)}
+      onKeyPress={() => handleClickGrid(i)}
       role="gridcell"
     >
       {!open && myTable && <div className="bread" />}

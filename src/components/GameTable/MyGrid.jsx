@@ -1,11 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
 import GridSquare from './GridSquare';
 
-export default function MyGrid({ grid }) {
+export default function MyGrid() {
   const myGingham = useSelector((state) => state.myGingham);
+  const myGrid = useSelector((state) => state.myGrid);
 
   return (
     <section className={`MyGrid ${myGingham}`}>
@@ -37,7 +37,7 @@ export default function MyGrid({ grid }) {
       <div className="right-spacer" />
 
       <main>
-        {grid.map((s, i) => (
+        {myGrid.map((s, i) => (
           <GridSquare
             key={s.id + s.myTable}
             i={i}
@@ -49,14 +49,3 @@ export default function MyGrid({ grid }) {
     </section>
   );
 }
-
-MyGrid.propTypes = {
-  grid: PropTypes.shape([
-    {
-      active: PropTypes.bool.isRequired,
-      open: PropTypes.bool.isRequired,
-      id: PropTypes.number.isRequired,
-      played: PropTypes.string.isRequired,
-    },
-  ]).isRequired,
-};
