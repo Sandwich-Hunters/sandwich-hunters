@@ -1,16 +1,31 @@
 import React from 'react';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import logger from 'redux-logger';
+
+import rootReducer from '../../reducers/reducers';
 import GameTable from './GameTable';
-import { TableProvider } from './TableContext';
 import '../../scss/App.scss';
 
-function App() {
+const localStorageMiddleware = function writeStateToLocalStorage({ getState }) {
+  return (next) => (action) => {
+    const result = next(action);
+    localStorage.setItem('appState', JSON.stringify(getState()));
+    return result;
+  };
+};
+
+const store = createStore(
+  rootReducer,
+  applyMiddleware(localStorageMiddleware, logger),
+);
+
+export default function App() {
   return (
     <div className="App">
-      <TableProvider>
+      <Provider store={store}>
         <GameTable />
-      </TableProvider>
+      </Provider>
     </div>
   );
 }
-
-export default App;
