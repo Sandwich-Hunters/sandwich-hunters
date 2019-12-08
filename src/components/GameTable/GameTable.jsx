@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import React, { useContext } from 'react';
 import { TableContext } from './TableContext';
-import randomSandwichPlacer from './randomSandwichPlacer';
+import randomSandwichPlacer from '../../game_functions/randomSandwichPlacer';
 import GameGrid from './GameGrid';
 import MyGrid from './MyGrid';
 import '../../scss/GameTable.scss';
@@ -30,14 +30,13 @@ export default function GameTable() {
     const updateGrid = grid.map((s) => {
       if (coords.includes(s.id)) {
         return { ...s, open: false };
-      } return { ...s, open: true };
+      }
+      return { ...s, open: true };
     });
     setState({ ...state, grid: updateGrid });
   }
 
-  const {
-    allGingham, grid, coords, iso, view,
-  } = state;
+  const { allGingham, grid, coords, iso, view } = state;
   return (
     <div className={`GameTable ${iso === 'iso' ? 'iso' : 'flat'}`}>
       <section className="table-flip__container">
@@ -55,10 +54,14 @@ export default function GameTable() {
         </div>
       </section>
       <section className="controls">
-        <button onClick={flipTable} type="button">Flip</button>
-        <button onClick={flipIso} type="button">Iso / Flat</button>
-        {view === 'showTop'
-          && allGingham.map((c) => (
+        <button onClick={flipTable} type="button">
+          Flip
+        </button>
+        <button onClick={flipIso} type="button">
+          Iso / Flat
+        </button>
+        {view === 'showTop' &&
+          allGingham.map((c) => (
             <button
               aria-label="gingham pattern"
               key={c}
@@ -67,8 +70,8 @@ export default function GameTable() {
               type="button"
             />
           ))}
-        {view === 'showBottom'
-          && allGingham.map((c) => (
+        {view === 'showBottom' &&
+          allGingham.map((c) => (
             <button
               aria-label="gingham pattern"
               key={c}

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import boardMaker from './boardMaker';
-import randomSandwichPlacer from './randomSandwichPlacer';
+import boardMaker from '../../game_functions/boardMaker';
+import randomSandwichPlacer from '../../game_functions/randomSandwichPlacer';
 
 const TableContext = React.createContext({});
 
