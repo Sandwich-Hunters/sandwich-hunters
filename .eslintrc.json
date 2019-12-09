@@ -17,6 +17,7 @@
   },
   "plugins": ["react"],
   "rules": {
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+    "operator-linebreak": [2, "after"]
   }
 }
