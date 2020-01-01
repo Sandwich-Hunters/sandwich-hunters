@@ -2,17 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
-export default function GridSquare({ i, s }) {
+export default function GridSquare({ index, square }) {
   const {
     //
     id,
     open,
     active,
     myTable,
-  } = s;
+  } = square;
   const dispatch = useDispatch();
 
-  const handleClickGrid = (index) => {
+  const handleClickGrid = () => {
     dispatch({ type: 'CLICK_GRID', payload: { index } });
   };
 
@@ -21,8 +21,8 @@ export default function GridSquare({ i, s }) {
       tabIndex="0"
       key={id}
       className={active ? 'GridSquare active' : 'GridSquare'}
-      onClick={() => handleClickGrid(i)}
-      onKeyPress={() => handleClickGrid(i)}
+      onClick={handleClickGrid}
+      onKeyPress={handleClickGrid}
       role="gridcell"
     >
       {!open && myTable && <div className="bread" />}
@@ -41,6 +41,6 @@ export default function GridSquare({ i, s }) {
 }
 
 GridSquare.propTypes = {
-  i: PropTypes.number.isRequired,
-  s: PropTypes.number.isRequired,
+  index: PropTypes.number.isRequired,
+  square: PropTypes.number.isRequired,
 };

@@ -37,11 +37,11 @@ export default function MyGrid() {
       <div className="right-spacer" />
 
       <main>
-        {myGrid.map((s, i) => (
+        {myGrid.map((square, index) => (
           <GridSquare
-            key={s.id + s.myTable}
-            i={i}
-            s={{ ...s, myTable: true }}
+            key={square.id + square.myTable}
+            index={index}
+            square={{ ...square, myTable: true }}
             onClick={(e) => e.preventDefault}
           />
         ))}
