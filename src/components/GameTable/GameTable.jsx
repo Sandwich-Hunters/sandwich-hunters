@@ -12,7 +12,6 @@ export default function GameTable() {
     //
     allGingham,
     gameGrid,
-    myGrid,
     iso,
     view,
   } = useSelector((state) => state);
@@ -36,28 +35,20 @@ export default function GameTable() {
     dispatch({ type: 'FLIP_ISO', payload: { newIso } });
   }
 
-  function handleRandomEnemyPlacement() {
+  function handleRandomSandwichPlacement(tableSide) {
     const tempCoordsArray = randomSandwichPlacer();
-    const tempCoords = tempCoordsArray.map((c) => c.slice(3));
-    const updateGrid = gameGrid.map((s) => {
-      if (tempCoords.includes(s.id)) {
-        return { ...s, open: false };
+    const tempCoords = tempCoordsArray.map((coordinateString) => coordinateString.slice(3));
+    const updateGrid = gameGrid.map((square) => {
+      if (tempCoords.includes(square.id)) {
+        return { ...square, open: false };
       }
-      return { ...s, open: true };
+      return { ...square, open: true };
     });
-    dispatch({ type: 'RANDOM_ENEMY_PLACEMENT', payload: { updateGrid } });
-  }
-
-  function handleRandomPlayerPlacement() {
-    const tempCoordsArray = randomSandwichPlacer();
-    const tempCoords = tempCoordsArray.map((c) => c.slice(3));
-    const updateGrid = myGrid.map((s) => {
-      if (tempCoords.includes(s.id)) {
-        return { ...s, open: false };
-      }
-      return { ...s, open: true };
-    });
-    dispatch({ type: 'RANDOM_PLAYER_PLACEMENT', payload: { updateGrid } });
+    if (tableSide === 'PLAYER') {
+      dispatch({ type: 'RANDOM_PLAYER_PLACEMENT', payload: { updateGrid } });
+    } else if (tableSide === 'ENEMY') {
+      dispatch({ type: 'RANDOM_ENEMY_PLACEMENT', payload: { updateGrid } });
+    }
   }
 
   return (
@@ -108,18 +99,18 @@ export default function GameTable() {
           aria-label="sandwich"
           className="sandwich"
           role="button"
-          onClick={handleRandomEnemyPlacement}
-          onKeyPress={handleRandomEnemyPlacement}
+          onClick={() => handleRandomSandwichPlacement('PLAYER')}
+          onKeyPress={() => handleRandomSandwichPlacement('PLAYER')}
         >
           🥪
         </span>
         <span
           tabIndex="0"
-          aria-label="sandwich"
+          aria-label="hamburger"
           className="sandwich"
           role="button"
-          onClick={handleRandomPlayerPlacement}
-          onKeyPress={handleRandomPlayerPlacement}
+          onClick={() => handleRandomSandwichPlacement('ENEMY')}
+          onKeyPress={() => handleRandomSandwichPlacement('ENEMY')}
         >
           🍔
         </span>
