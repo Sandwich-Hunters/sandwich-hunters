@@ -17,7 +17,7 @@ if (!initialState) {
     iso: 'flat',
     gameGrid: boardMaker(10),
     myGrid: boardMaker(10),
-    allGingham: ['green', 'red', 'black', 'blue'],
+    ginghamColors: ['green', 'red', 'black', 'blue'],
     gameGingham: 'red',
     myGingham: 'blue',
   };

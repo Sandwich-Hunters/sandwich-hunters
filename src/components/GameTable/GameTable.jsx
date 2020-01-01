@@ -10,7 +10,7 @@ import '../../scss/GameTable.scss';
 export default function GameTable() {
   const {
     //
-    allGingham,
+    ginghamColors,
     gameGrid,
     iso,
     view,
@@ -75,22 +75,22 @@ export default function GameTable() {
           Iso / Flat
         </button>
         {view === 'showTop' &&
-          allGingham.map((c) => (
+          ginghamColors.map((color) => (
             <button
               aria-label="gingham pattern"
-              key={c}
-              onClick={() => handleFlipGameGingham(c)}
-              className={`gingham-swatch ${c}`}
+              key={color}
+              onClick={() => handleFlipGameGingham(color)}
+              className={`gingham-swatch ${color}`}
               type="button"
             />
           ))}
         {view === 'showBottom' &&
-          allGingham.map((c) => (
+          ginghamColors.map((color) => (
             <button
               aria-label="gingham pattern"
-              key={c}
-              onClick={() => handleFlipMyGingham(c)}
-              className={`gingham-swatch ${c}`}
+              key={color}
+              onClick={() => handleFlipMyGingham(color)}
+              className={`gingham-swatch ${color}`}
               type="button"
             />
           ))}
