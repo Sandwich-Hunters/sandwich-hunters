@@ -39,7 +39,7 @@ export default function GameGrid() {
 
       <main>
         {gameGrid.map((square, index) => (
-          <GameGridSquare key={square.id + square.myTable} index={index} square={square} />
+          <GameGridSquare key={`${square.id}-GameGrid`} index={index} square={square} />
         ))}
       </main>
     </section>
