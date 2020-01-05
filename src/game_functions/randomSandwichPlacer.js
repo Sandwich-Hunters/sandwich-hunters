@@ -1,3 +1,30 @@
+// EXAMPLE DATA from randomSandwichPlacer
+// FIRST NUMBER is ??
+// SECOND NUMBER is ??
+// THIRD NUMBER is TYPE of sandwich
+// FOURTH NUMBER is X Coordinate
+// FIFTH NUMBER is Y Coordinate
+// X and Y grid coordinates start at 1 on the left, count up to 9, and end with 0 on the right
+// const coordsArray = [
+//   '32517',
+//   '32527',
+//   '32537',
+//   '32547',
+//   '32557',
+//   '32431',
+//   '32421',
+//   '32411',
+//   '32441',
+//   '32677',
+//   '32676',
+//   '32675',
+//   '32346',
+//   '32356',
+//   '32366',
+//   '32290',
+//   '32299'
+// ];
+
 // Takes in an array of ship types to place (if none is provided, uses the standard set):
 export default function randomSandwichPlacer(typesArray = [5, 4, 6, 3, 2]) {
   const ships = [];
@@ -14,10 +41,10 @@ export default function randomSandwichPlacer(typesArray = [5, 4, 6, 3, 2]) {
 
   const edgeCheck = (prevCoord, newCoord) => {
     if (
-      (prevCoord.substring(3, 4) === '0' && newCoord.substring(3, 4) === '1')
-      || (prevCoord.substring(3, 4) === '1' && newCoord.substring(3, 4) === '0')
-      || (prevCoord.substring(4) === '0' && newCoord.substring(4) === '1')
-      || (prevCoord.substring(4) === '1' && newCoord.substring(4) === '0')
+      (prevCoord.substring(3, 4) === '0' && newCoord.substring(3, 4) === '1') ||
+      (prevCoord.substring(3, 4) === '1' && newCoord.substring(3, 4) === '0') ||
+      (prevCoord.substring(4) === '0' && newCoord.substring(4) === '1') ||
+      (prevCoord.substring(4) === '1' && newCoord.substring(4) === '0')
     ) {
       return true;
     }

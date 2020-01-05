@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
-export default function GridSquare({ index, square }) {
+export default function GameGridSquare({ index, square }) {
   const {
     //
     id,
@@ -40,7 +40,7 @@ export default function GridSquare({ index, square }) {
   );
 }
 
-GridSquare.propTypes = {
+GameGridSquare.propTypes = {
   index: PropTypes.number.isRequired,
   square: PropTypes.number.isRequired,
 };

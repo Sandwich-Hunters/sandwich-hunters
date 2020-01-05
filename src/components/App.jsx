@@ -3,9 +3,9 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
-import rootReducer from '../../reducers/reducers';
-import GameTable from './GameTable';
-import '../../scss/App.scss';
+import rootReducer from '../reducers/reducers';
+import GameTable from './GameTable/GameTable';
+import '../scss/App.scss';
 
 const localStorageMiddleware = function writeStateToLocalStorage({ getState }) {
   return (next) => (action) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import GridSquare from './GridSquare';
+import GridSquare from './GameGridSquare';
 
 export default function MyGrid() {
   const myGingham = useSelector((state) => state.myGingham);

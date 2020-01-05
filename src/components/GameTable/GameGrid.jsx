@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import GridSquare from './GridSquare';
+import GameGridSquare from './GameGridSquare';
 import '../../scss/GameGrid.scss';
 
 export default function GameGrid() {
@@ -39,7 +39,7 @@ export default function GameGrid() {
 
       <main>
         {gameGrid.map((square, index) => (
-          <GridSquare key={square.id + square.myTable} index={index} square={square} />
+          <GameGridSquare key={square.id + square.myTable} index={index} square={square} />
         ))}
       </main>
     </section>
