@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import GridSquare from './GameGridSquare';
+import MyGridSquare from './MyGridSquare';
 
 export default function MyGrid() {
   const myGingham = useSelector((state) => state.myGingham);
@@ -37,11 +37,10 @@ export default function MyGrid() {
       <div className="right-spacer" />
 
       <main>
-        {myGrid.map((square, index) => (
-          <GridSquare
-            key={square.id + square.myTable}
-            index={index}
-            square={{ ...square, myTable: true }}
+        {myGrid.map((square) => (
+          <MyGridSquare
+            key={`${square.id}-MyGrid`}
+            square={square}
             onClick={(e) => e.preventDefault}
           />
         ))}
