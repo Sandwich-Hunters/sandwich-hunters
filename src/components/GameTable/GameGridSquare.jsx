@@ -6,7 +6,7 @@ export default function GameGridSquare({ index, square }) {
   const {
     //
     id,
-    open,
+    empty,
     active,
     myTable,
   } = square;
@@ -25,9 +25,9 @@ export default function GameGridSquare({ index, square }) {
       onKeyPress={handleClickGrid}
       role="gridcell"
     >
-      {!open && myTable && <div className="bread" />}
-      {!open && active && !myTable && <div className="bread" />}
-      {!open && active && myTable && (
+      {!empty && myTable && <div className="bread" />}
+      {!empty && active && !myTable && <div className="bread" />}
+      {!empty && active && myTable && (
         <>
           <span />
           <span />

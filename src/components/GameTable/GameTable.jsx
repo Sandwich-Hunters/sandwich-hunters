@@ -40,9 +40,9 @@ export default function GameTable() {
     const tempCoords = tempCoordsArray.map((coordinateString) => coordinateString.slice(3));
     const updateGrid = gameGrid.map((square) => {
       if (tempCoords.includes(square.id)) {
-        return { ...square, open: false };
+        return { ...square, empty: false }; // NOT EMPTY: a sandwich lives here
       }
-      return { ...square, open: true };
+      return { ...square, empty: true };
     });
     if (tableSide === 'PLAYER') {
       dispatch({ type: 'RANDOM_PLAYER_PLACEMENT', payload: { updateGrid } });

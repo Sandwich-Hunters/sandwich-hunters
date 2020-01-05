@@ -5,7 +5,7 @@ export default function MyGridSquare({ square }) {
   const {
     //
     id,
-    open,
+    empty,
     active,
   } = square;
 
@@ -17,8 +17,8 @@ export default function MyGridSquare({ square }) {
       className={active ? 'GridSquare active' : 'GridSquare'}
       role="gridcell"
     >
-      {!open && !active && (<div className="bread" />)}
-      {!open && active && (
+      {!empty && !active && (<div className="bread" />)}
+      {!empty && active && (
         <>
           <div className="bread" />
           <span />
