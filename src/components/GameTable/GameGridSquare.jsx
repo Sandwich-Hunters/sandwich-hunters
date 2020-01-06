@@ -31,5 +31,10 @@ export default function GameGridSquare({ index, square }) {
 
 GameGridSquare.propTypes = {
   index: PropTypes.number.isRequired,
-  square: PropTypes.number.isRequired,
+  square: PropTypes.shape({
+    active: PropTypes.bool.isRequired,
+    empty: PropTypes.bool.isRequired,
+    id: PropTypes.string.isRequired,
+    played: PropTypes.string.isRequired,
+  }).isRequired,
 };

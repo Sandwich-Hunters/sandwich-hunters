@@ -9,7 +9,6 @@ export default function MyGridSquare({ square }) {
     active,
   } = square;
 
-
   return (
     <span
       tabIndex="0"
@@ -17,7 +16,7 @@ export default function MyGridSquare({ square }) {
       className={active ? 'GridSquare active' : 'GridSquare'}
       role="gridcell"
     >
-      {!empty && !active && (<div className="bread" />)}
+      {!empty && !active && <div className="bread" />}
       {!empty && active && (
         <>
           <div className="bread" />
@@ -33,5 +32,10 @@ export default function MyGridSquare({ square }) {
 }
 
 MyGridSquare.propTypes = {
-  square: PropTypes.number.isRequired,
+  square: PropTypes.shape({
+    active: PropTypes.bool.isRequired,
+    empty: PropTypes.bool.isRequired,
+    id: PropTypes.string.isRequired,
+    played: PropTypes.string.isRequired,
+  }).isRequired,
 };
