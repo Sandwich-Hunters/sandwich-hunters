@@ -1,14 +1,5 @@
 import boardMaker from '../game_functions/boardMaker';
 
-// grab the coordinates and map them to the grid
-// const coords = coordsArray.map((c) => c.slice(3));
-// const updateGrid = blankGrid.map((s) => {
-//   if (coords.includes(s.id)) {
-//     return { ...s, open: false };
-//   }
-//   return s;
-// });
-
 let initialState = JSON.parse(localStorage.getItem('appState'));
 
 if (!initialState) {
@@ -17,7 +8,7 @@ if (!initialState) {
     iso: 'flat',
     gameGrid: boardMaker(10),
     myGrid: boardMaker(10),
-    allGingham: ['green', 'red', 'black', 'blue'],
+    ginghamColors: ['green', 'red', 'black', 'blue'],
     gameGingham: 'red',
     myGingham: 'blue',
   };

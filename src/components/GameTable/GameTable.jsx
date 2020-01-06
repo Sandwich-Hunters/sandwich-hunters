@@ -10,9 +10,8 @@ import '../../scss/GameTable.scss';
 export default function GameTable() {
   const {
     //
-    allGingham,
+    ginghamColors,
     gameGrid,
-    myGrid,
     iso,
     view,
   } = useSelector((state) => state);
@@ -36,28 +35,20 @@ export default function GameTable() {
     dispatch({ type: 'FLIP_ISO', payload: { newIso } });
   }
 
-  function handleRandomEnemyPlacement() {
+  function handleRandomSandwichPlacement(tableSide) {
     const tempCoordsArray = randomSandwichPlacer();
-    const tempCoords = tempCoordsArray.map((c) => c.slice(3));
-    const updateGrid = gameGrid.map((s) => {
-      if (tempCoords.includes(s.id)) {
-        return { ...s, open: false };
+    const tempCoords = tempCoordsArray.map((coordinateString) => coordinateString.slice(3));
+    const updateGrid = gameGrid.map((square) => {
+      if (tempCoords.includes(square.id)) {
+        return { ...square, empty: false }; // NOT EMPTY: a sandwich lives here
       }
-      return { ...s, open: true };
+      return { ...square, empty: true };
     });
-    dispatch({ type: 'RANDOM_ENEMY_PLACEMENT', payload: { updateGrid } });
-  }
-
-  function handleRandomPlayerPlacement() {
-    const tempCoordsArray = randomSandwichPlacer();
-    const tempCoords = tempCoordsArray.map((c) => c.slice(3));
-    const updateGrid = myGrid.map((s) => {
-      if (tempCoords.includes(s.id)) {
-        return { ...s, open: false };
-      }
-      return { ...s, open: true };
-    });
-    dispatch({ type: 'RANDOM_PLAYER_PLACEMENT', payload: { updateGrid } });
+    if (tableSide === 'PLAYER') {
+      dispatch({ type: 'RANDOM_PLAYER_PLACEMENT', payload: { updateGrid } });
+    } else if (tableSide === 'ENEMY') {
+      dispatch({ type: 'RANDOM_ENEMY_PLACEMENT', payload: { updateGrid } });
+    }
   }
 
   return (
@@ -84,22 +75,22 @@ export default function GameTable() {
           Iso / Flat
         </button>
         {view === 'showTop' &&
-          allGingham.map((c) => (
+          ginghamColors.map((color) => (
             <button
               aria-label="gingham pattern"
-              key={c}
-              onClick={() => handleFlipGameGingham(c)}
-              className={`gingham-swatch ${c}`}
+              key={color}
+              onClick={() => handleFlipGameGingham(color)}
+              className={`gingham-swatch ${color}`}
               type="button"
             />
           ))}
         {view === 'showBottom' &&
-          allGingham.map((c) => (
+          ginghamColors.map((color) => (
             <button
               aria-label="gingham pattern"
-              key={c}
-              onClick={() => handleFlipMyGingham(c)}
-              className={`gingham-swatch ${c}`}
+              key={color}
+              onClick={() => handleFlipMyGingham(color)}
+              className={`gingham-swatch ${color}`}
               type="button"
             />
           ))}
@@ -108,18 +99,18 @@ export default function GameTable() {
           aria-label="sandwich"
           className="sandwich"
           role="button"
-          onClick={handleRandomEnemyPlacement}
-          onKeyPress={handleRandomEnemyPlacement}
+          onClick={() => handleRandomSandwichPlacement('PLAYER')}
+          onKeyPress={() => handleRandomSandwichPlacement('PLAYER')}
         >
           🥪
         </span>
         <span
           tabIndex="0"
-          aria-label="sandwich"
+          aria-label="hamburger"
           className="sandwich"
           role="button"
-          onClick={handleRandomPlayerPlacement}
-          onKeyPress={handleRandomPlayerPlacement}
+          onClick={() => handleRandomSandwichPlacement('ENEMY')}
+          onKeyPress={() => handleRandomSandwichPlacement('ENEMY')}
         >
           🍔
         </span>

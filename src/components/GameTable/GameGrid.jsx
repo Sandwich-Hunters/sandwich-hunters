@@ -1,18 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import GridSquare from './GridSquare';
+import GameGridSquare from './GameGridSquare';
 import '../../scss/GameGrid.scss';
 
 export default function GameGrid() {
   const gameGingham = useSelector((state) => state.gameGingham);
   const gameGrid = useSelector((state) => state.gameGrid);
-
-  // const handleClick = (i) => {
-  //   const newGrid = [...grid];
-  //   newGrid[i].active = true;
-  //   setState({ ...state, grid: newGrid });
-  // };
 
   return (
     <section className={`GameGrid ${gameGingham}`}>
@@ -44,8 +38,8 @@ export default function GameGrid() {
       <div className="right-spacer" />
 
       <main>
-        {gameGrid.map((s, i) => (
-          <GridSquare key={s.id + s.myTable} i={i} s={s} />
+        {gameGrid.map((square, index) => (
+          <GameGridSquare key={`${square.id}-GameGrid`} index={index} square={square} />
         ))}
       </main>
     </section>
