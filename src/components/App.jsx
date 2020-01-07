@@ -2,6 +2,7 @@ import React from 'react';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 import rootReducer from '../reducers/reducers';
 import GameTable from './GameTable/GameTable';
@@ -17,7 +18,7 @@ const localStorageMiddleware = function writeStateToLocalStorage({ getState }) {
 
 const store = createStore(
   rootReducer,
-  applyMiddleware(localStorageMiddleware, logger),
+  composeWithDevTools(applyMiddleware(localStorageMiddleware, logger)),
 );
 
 export default function App() {
