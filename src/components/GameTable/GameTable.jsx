@@ -26,7 +26,7 @@ export default function GameTable() {
   }
 
   function handleFlipTable() {
-    const newView = view === 'showTop' ? 'showBottom' : 'showTop';
+    const newView = view === 'showEnemy' ? 'showPlayer' : 'showEnemy';
     dispatch({ type: 'FLIP_TABLE', payload: { newView } });
   }
 
@@ -56,13 +56,13 @@ export default function GameTable() {
       <section className="table-flip__container">
         <div
           className={`table-flip__body 
-          ${view === 'showTop' ? 'showTop' : 'showBottom'}
+          ${view === 'showEnemy' ? 'showEnemy' : 'showPlayer'}
           ${iso === 'iso' ? 'iso' : 'flat'}`}
         >
-          <div className="table-flip__body--top">
+          <div className="table-flip__body--enemy">
             <EnemyGrid />
           </div>
-          <div className="table-flip__body--bottom">
+          <div className="table-flip__body--player">
             <PlayerGrid />
           </div>
         </div>
@@ -74,7 +74,7 @@ export default function GameTable() {
         <button onClick={handleFlipIso} type="button">
           Iso / Flat
         </button>
-        {view === 'showTop' &&
+        {view === 'showEnemy' &&
           ginghamColors.map((color) => (
             <button
               aria-label="gingham pattern"
@@ -84,7 +84,7 @@ export default function GameTable() {
               type="button"
             />
           ))}
-        {view === 'showBottom' &&
+        {view === 'showPlayer' &&
           ginghamColors.map((color) => (
             <button
               aria-label="gingham pattern"

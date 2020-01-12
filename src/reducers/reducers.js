@@ -4,7 +4,7 @@ let initialState = JSON.parse(localStorage.getItem('appState'));
 
 if (!initialState) {
   initialState = {
-    view: 'showTop',
+    view: 'showEnemy',
     iso: 'flat',
     enemyGrid: boardMaker(10),
     playerGrid: boardMaker(10),
