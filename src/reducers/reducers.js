@@ -7,10 +7,10 @@ if (!initialState) {
     view: 'showTop',
     iso: 'flat',
     enemyGrid: boardMaker(10),
-    myGrid: boardMaker(10),
+    playerGrid: boardMaker(10),
     ginghamColors: ['green', 'red', 'black', 'blue'],
     enemyGingham: 'red',
-    myGingham: 'blue',
+    playerGingham: 'blue',
   };
 }
 
@@ -28,9 +28,9 @@ export default (state = initialState, action) => {
       return { ...state, enemyGingham: tempEnemyGingham };
     }
 
-    case 'FLIP_MY_GINGHAM': {
-      const tempMyGingham = action.payload.color;
-      return { ...state, myGingham: tempMyGingham };
+    case 'FLIP_PLAYER_GINGHAM': {
+      const tempPlayerGingham = action.payload.color;
+      return { ...state, playerGingham: tempPlayerGingham };
     }
 
     case 'FLIP_TABLE': {
@@ -50,7 +50,7 @@ export default (state = initialState, action) => {
 
     case 'RANDOM_PLAYER_PLACEMENT': {
       const tempGameGrid = action.payload.updateGrid;
-      return { ...state, myGrid: tempGameGrid };
+      return { ...state, playerGrid: tempGameGrid };
     }
 
     default:

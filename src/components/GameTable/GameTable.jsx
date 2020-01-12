@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import randomSandwichPlacer from '../../game_functions/randomSandwichPlacer';
 import EnemyGrid from './EnemyGrid';
-import MyGrid from './MyGrid';
+import PlayerGrid from './PlayerGrid';
 import '../../scss/GameTable.scss';
 
 export default function GameTable() {
@@ -21,8 +21,8 @@ export default function GameTable() {
     dispatch({ type: 'FLIP_ENEMY_GINGHAM', payload: { color } });
   }
 
-  function handleFlipMyGingham(color) {
-    dispatch({ type: 'FLIP_MY_GINGHAM', payload: { color } });
+  function handleFlipPlayerGingham(color) {
+    dispatch({ type: 'FLIP_PLAYER_GINGHAM', payload: { color } });
   }
 
   function handleFlipTable() {
@@ -63,7 +63,7 @@ export default function GameTable() {
             <EnemyGrid />
           </div>
           <div className="table-flip__body--bottom">
-            <MyGrid />
+            <PlayerGrid />
           </div>
         </div>
       </section>
@@ -89,7 +89,7 @@ export default function GameTable() {
             <button
               aria-label="gingham pattern"
               key={color}
-              onClick={() => handleFlipMyGingham(color)}
+              onClick={() => handleFlipPlayerGingham(color)}
               className={`gingham-swatch ${color}`}
               type="button"
             />

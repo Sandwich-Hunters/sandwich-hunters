@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function MyGridSquare({ square }) {
+export default function PlayerGridSquare({ square }) {
   const {
     //
     id,
@@ -31,7 +31,7 @@ export default function MyGridSquare({ square }) {
   );
 }
 
-MyGridSquare.propTypes = {
+PlayerGridSquare.propTypes = {
   square: PropTypes.shape({
     active: PropTypes.bool.isRequired,
     empty: PropTypes.bool.isRequired,

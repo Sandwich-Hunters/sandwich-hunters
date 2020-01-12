@@ -1,7 +1,7 @@
 @import './palette';
 
 .EnemyGrid,
-.MyGrid {
+.PlayerGrid {
   border-radius: 4px;
   display: grid;
   grid-template-columns: 1fr 10fr 1fr;
@@ -103,7 +103,7 @@
   }
 }
 
-.MyGrid span.GridSquare {
+.PlayerGrid span.GridSquare {
   background: none;
   border: none;
 
@@ -122,20 +122,20 @@
   }
 }
 
-.MyGrid.green,
+.PlayerGrid.green,
 .EnemyGrid.green {
   background-image: url('../assets/green.png');
 }
-.MyGrid.red,
+.PlayerGrid.red,
 .EnemyGrid.red {
   background-image: url('../assets/red2.jpg');
 }
-.MyGrid.black,
+.PlayerGrid.black,
 .EnemyGrid.black {
   background-image: url('../assets/black2.png');
   background-size: 600px;
 }
-.MyGrid.blue,
+.PlayerGrid.blue,
 .EnemyGrid.blue {
   background-image: url('../assets/blue3.png');
 }
