@@ -1,6 +1,6 @@
 @import './palette';
 
-.GameGrid,
+.EnemyGrid,
 .MyGrid {
   border-radius: 4px;
   display: grid;
@@ -123,19 +123,19 @@
 }
 
 .MyGrid.green,
-.GameGrid.green {
+.EnemyGrid.green {
   background-image: url('../assets/green.png');
 }
 .MyGrid.red,
-.GameGrid.red {
+.EnemyGrid.red {
   background-image: url('../assets/red2.jpg');
 }
 .MyGrid.black,
-.GameGrid.black {
+.EnemyGrid.black {
   background-image: url('../assets/black2.png');
   background-size: 600px;
 }
 .MyGrid.blue,
-.GameGrid.blue {
+.EnemyGrid.blue {
   background-image: url('../assets/blue3.png');
 }

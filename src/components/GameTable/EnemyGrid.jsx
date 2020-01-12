@@ -1,15 +1,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import GameGridSquare from './GameGridSquare';
-import '../../scss/GameGrid.scss';
+import EnemyGridSquare from './EnemyGridSquare';
+import '../../scss/Grid.scss';
 
-export default function GameGrid() {
-  const gameGingham = useSelector((state) => state.gameGingham);
-  const gameGrid = useSelector((state) => state.gameGrid);
+export default function EnemyGrid() {
+  const enemyGingham = useSelector((state) => state.enemyGingham);
+  const enemyGrid = useSelector((state) => state.enemyGrid);
 
   return (
-    <section className={`GameGrid ${gameGingham}`}>
+    <section className={`EnemyGrid ${enemyGingham}`}>
       <div className="top-labels">
         <p className="top">1</p>
         <p className="top">2</p>
@@ -38,9 +38,9 @@ export default function GameGrid() {
       <div className="right-spacer" />
 
       <main>
-        {gameGrid.map((square, index) => (
-          <GameGridSquare
-            key={`${square.id}-GameGrid`}
+        {enemyGrid.map((square, index) => (
+          <EnemyGridSquare
+            key={`${square.id}-EnemyGrid`}
             index={index}
             square={square}
           />
