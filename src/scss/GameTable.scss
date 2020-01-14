@@ -38,7 +38,7 @@
     margin-top: 3rem;
   }
 
-  &.showTop {
+  &.showEnemy {
     transform: rotateY(0deg) rotateX(44deg);
     &.flat {
       // transform: rotateY(360deg) rotateX(0deg);//more extreme animation
@@ -46,7 +46,7 @@
     }
   }
 
-  &.showBottom {
+  &.showPlayer {
     transform: rotateY(180deg) rotateX(-44deg);
     &.flat {
       transform: rotateX(0deg) rotateY(180deg);
@@ -54,12 +54,12 @@
   }
 }
 
-.table-flip__body--bottom {
+.table-flip__body--player {
   transform: rotateY(180deg);
 }
 
-.table-flip__body--top,
-.table-flip__body--bottom {
+.table-flip__body--enemy,
+.table-flip__body--player {
   align-items: center;
   backface-visibility: hidden;
   display: flex;

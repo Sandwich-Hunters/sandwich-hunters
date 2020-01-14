@@ -1,14 +1,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import MyGridSquare from './MyGridSquare';
+import EnemyGridSquare from './EnemyGridSquare';
+import '../../scss/Grid.scss';
 
-export default function MyGrid() {
-  const myGingham = useSelector((state) => state.myGingham);
-  const myGrid = useSelector((state) => state.myGrid);
+export default function EnemyGrid() {
+  const enemyGingham = useSelector((state) => state.enemyGingham);
+  const enemyGrid = useSelector((state) => state.enemyGrid);
 
   return (
-    <section className={`MyGrid ${myGingham}`}>
+    <section className={`EnemyGrid ${enemyGingham}`}>
       <div className="top-labels">
         <p className="top">1</p>
         <p className="top">2</p>
@@ -37,11 +38,11 @@ export default function MyGrid() {
       <div className="right-spacer" />
 
       <main>
-        {myGrid.map((square) => (
-          <MyGridSquare
-            key={`${square.id}-MyGrid`}
+        {enemyGrid.map((square, index) => (
+          <EnemyGridSquare
+            key={`${square.id}-EnemyGrid`}
+            index={index}
             square={square}
-            onClick={(e) => e.preventDefault}
           />
         ))}
       </main>

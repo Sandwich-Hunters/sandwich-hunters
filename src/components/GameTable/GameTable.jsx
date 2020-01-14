@@ -3,30 +3,30 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import randomSandwichPlacer from '../../game_functions/randomSandwichPlacer';
-import GameGrid from './GameGrid';
-import MyGrid from './MyGrid';
+import EnemyGrid from './EnemyGrid';
+import PlayerGrid from './PlayerGrid';
 import '../../scss/GameTable.scss';
 
 export default function GameTable() {
   const {
     //
     ginghamColors,
-    gameGrid,
+    enemyGrid,
     iso,
     view,
   } = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  function handleFlipGameGingham(color) {
-    dispatch({ type: 'FLIP_GAME_GINGHAM', payload: { color } });
+  function handleFlipEnemyGingham(color) {
+    dispatch({ type: 'FLIP_ENEMY_GINGHAM', payload: { color } });
   }
 
-  function handleFlipMyGingham(color) {
-    dispatch({ type: 'FLIP_MY_GINGHAM', payload: { color } });
+  function handleFlipPlayerGingham(color) {
+    dispatch({ type: 'FLIP_PLAYER_GINGHAM', payload: { color } });
   }
 
   function handleFlipTable() {
-    const newView = view === 'showTop' ? 'showBottom' : 'showTop';
+    const newView = view === 'showEnemy' ? 'showPlayer' : 'showEnemy';
     dispatch({ type: 'FLIP_TABLE', payload: { newView } });
   }
 
@@ -38,7 +38,7 @@ export default function GameTable() {
   function handleRandomSandwichPlacement(tableSide) {
     const tempCoordsArray = randomSandwichPlacer();
     const tempCoords = tempCoordsArray.map((coordinateString) => coordinateString.slice(3));
-    const updateGrid = gameGrid.map((square) => {
+    const updateGrid = enemyGrid.map((square) => {
       if (tempCoords.includes(square.id)) {
         return { ...square, empty: false }; // NOT EMPTY: a sandwich lives here
       }
@@ -56,14 +56,14 @@ export default function GameTable() {
       <section className="table-flip__container">
         <div
           className={`table-flip__body 
-          ${view === 'showTop' ? 'showTop' : 'showBottom'}
+          ${view === 'showEnemy' ? 'showEnemy' : 'showPlayer'}
           ${iso === 'iso' ? 'iso' : 'flat'}`}
         >
-          <div className="table-flip__body--top">
-            <GameGrid />
+          <div className="table-flip__body--enemy">
+            <EnemyGrid />
           </div>
-          <div className="table-flip__body--bottom">
-            <MyGrid />
+          <div className="table-flip__body--player">
+            <PlayerGrid />
           </div>
         </div>
       </section>
@@ -74,22 +74,22 @@ export default function GameTable() {
         <button onClick={handleFlipIso} type="button">
           Iso / Flat
         </button>
-        {view === 'showTop' &&
+        {view === 'showEnemy' &&
           ginghamColors.map((color) => (
             <button
               aria-label="gingham pattern"
               key={color}
-              onClick={() => handleFlipGameGingham(color)}
+              onClick={() => handleFlipEnemyGingham(color)}
               className={`gingham-swatch ${color}`}
               type="button"
             />
           ))}
-        {view === 'showBottom' &&
+        {view === 'showPlayer' &&
           ginghamColors.map((color) => (
             <button
               aria-label="gingham pattern"
               key={color}
-              onClick={() => handleFlipMyGingham(color)}
+              onClick={() => handleFlipPlayerGingham(color)}
               className={`gingham-swatch ${color}`}
               type="button"
             />

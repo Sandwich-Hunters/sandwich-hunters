@@ -4,33 +4,33 @@ let initialState = JSON.parse(localStorage.getItem('appState'));
 
 if (!initialState) {
   initialState = {
-    view: 'showTop',
+    view: 'showEnemy',
     iso: 'flat',
-    gameGrid: boardMaker(10),
-    myGrid: boardMaker(10),
+    enemyGrid: boardMaker(10),
+    playerGrid: boardMaker(10),
     ginghamColors: ['green', 'red', 'black', 'blue'],
-    gameGingham: 'red',
-    myGingham: 'blue',
+    enemyGingham: 'red',
+    playerGingham: 'blue',
   };
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'CLICK_GRID': {
-      const tempGrid = [...state.gameGrid];
+      const tempGrid = [...state.enemyGrid];
       const { index } = action.payload;
       tempGrid[index].active = true;
-      return { ...state, gameGrid: tempGrid };
+      return { ...state, enemyGrid: tempGrid };
     }
 
-    case 'FLIP_GAME_GINGHAM': {
-      const tempGameGingham = action.payload.color;
-      return { ...state, gameGingham: tempGameGingham };
+    case 'FLIP_ENEMY_GINGHAM': {
+      const tempEnemyGingham = action.payload.color;
+      return { ...state, enemyGingham: tempEnemyGingham };
     }
 
-    case 'FLIP_MY_GINGHAM': {
-      const tempMyGingham = action.payload.color;
-      return { ...state, myGingham: tempMyGingham };
+    case 'FLIP_PLAYER_GINGHAM': {
+      const tempPlayerGingham = action.payload.color;
+      return { ...state, playerGingham: tempPlayerGingham };
     }
 
     case 'FLIP_TABLE': {
@@ -45,12 +45,12 @@ export default (state = initialState, action) => {
 
     case 'RANDOM_ENEMY_PLACEMENT': {
       const tempGameGrid = action.payload.updateGrid;
-      return { ...state, gameGrid: tempGameGrid };
+      return { ...state, enemyGrid: tempGameGrid };
     }
 
     case 'RANDOM_PLAYER_PLACEMENT': {
       const tempGameGrid = action.payload.updateGrid;
-      return { ...state, myGrid: tempGameGrid };
+      return { ...state, playerGrid: tempGameGrid };
     }
 
     default:
