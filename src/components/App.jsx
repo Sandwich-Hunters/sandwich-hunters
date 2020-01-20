@@ -5,6 +5,8 @@ import logger from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import rootReducer from '../reducers/reducers';
+
+import MySammies from './MySammies/MySammies';
 import GameTable from './GameTable/GameTable';
 import '../scss/App.scss';
 
@@ -26,6 +28,7 @@ export default function App() {
     <div className="App">
       <Provider store={store}>
         <GameTable />
+        <MySammies />
       </Provider>
     </div>
   );
