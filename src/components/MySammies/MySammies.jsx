@@ -6,24 +6,21 @@ import '../../scss/MySammies.scss';
 export default function MySammies() {
   const dispatch = useDispatch();
   const playerGingham = useSelector((state) => state.playerGingham);
-  const holding = useSelector((state) => state.holding);
-  const [orient, setOrient] = useState('horizontal');
+  const [holding, setHolding] = useState({
+    type: null,
+    orient: 'horizontal',
+  });
 
   const handleCancelButton = () => {
-    setOrient('horizontal');
     const cancelHolding = {
       type: null, // wedge, sub, hoagie, grinder, hero
-      orient: null, // vertical or horizontal
+      orient: 'horizontal', // vertical or horizontal
     };
-    dispatch({ type: 'CANCEL_HOLDING', payload: cancelHolding });
+    setHolding(cancelHolding);
   };
 
   const handleSammyClick = (type) => {
-    const nowHolding = {
-      type,
-      orient,
-    };
-    dispatch({ type: 'NOW_HOLDING', payload: nowHolding });
+    setHolding({ ...holding, type });
   };
 
   return (
@@ -35,8 +32,8 @@ export default function MySammies() {
           aria-label="clockwise vertical arrows"
           className="orient-button"
           role="button"
-          onClick={() => (orient === 'horizontal' ? setOrient('vertical') : setOrient('horizontal'))}
-          onKeyPress={() => (orient === 'horizontal' ? setOrient('vertical') : setOrient('horizontal'))}
+          onClick={() => (holding.orient === 'horizontal' ? setHolding({ ...holding, orient: 'vertical' }) : setHolding({ ...holding, orient: 'horizontal' }))}
+          onKeyPress={() => (holding.orient === 'horizontal' ? setHolding({ ...holding, orient: 'vertical' }) : setHolding({ ...holding, orient: 'horizontal' }))}
         >
           🔃
         </span>
@@ -53,10 +50,13 @@ export default function MySammies() {
         </span>
       </header>
 
-      <section className={`MySammies__body ${orient}`}>
+      <section className="MySammies__body">
 
         <section className="MySammies__sammy__container">
-          <div className="MySammies__sammy--draggable" onClick={() => handleSammyClick('wedge')}>
+          <div
+            className={`MySammies__sammy--draggable ${holding.type === 'wedge' ? 'active' : ''} ${holding.orient}`}
+            onClick={() => handleSammyClick('wedge')}
+          >
             <div className="MySammies__sammy bread left" />
             <div className="MySammies__sammy bread right" />
           </div>
@@ -64,7 +64,10 @@ export default function MySammies() {
         </section>
 
         <section className="MySammies__sammy__container">
-          <div className="MySammies__sammy--draggable" onClick={() => handleSammyClick('sub')}>
+          <div
+            className={`MySammies__sammy--draggable ${holding.type === 'sub' ? 'active' : ''} ${holding.orient}`}
+            onClick={() => handleSammyClick('sub')}
+          >
             <div className="MySammies__sammy bread left" />
             <div className="MySammies__sammy bread mid" />
             <div className="MySammies__sammy bread right" />
@@ -73,7 +76,10 @@ export default function MySammies() {
         </section>
 
         <section className="MySammies__sammy__container">
-          <div className="MySammies__sammy--draggable" onClick={() => handleSammyClick('hoagie')}>
+          <div
+            className={`MySammies__sammy--draggable ${holding.type === 'hoagie' ? 'active' : ''} ${holding.orient}`}
+            onClick={() => handleSammyClick('hoagie')}
+          >
             <div className="MySammies__sammy bread left" />
             <div className="MySammies__sammy bread mid" />
             <div className="MySammies__sammy bread right" />
@@ -82,7 +88,10 @@ export default function MySammies() {
         </section>
 
         <section className="MySammies__sammy__container">
-          <div className="MySammies__sammy--draggable" onClick={() => handleSammyClick('grinder')}>
+          <div
+            className={`MySammies__sammy--draggable ${holding.type === 'grinder' ? 'active' : ''} ${holding.orient}`}
+            onClick={() => handleSammyClick('grinder')}
+          >
             <div className="MySammies__sammy bread left" />
             <div className="MySammies__sammy bread mid" />
             <div className="MySammies__sammy bread mid" />
@@ -92,7 +101,10 @@ export default function MySammies() {
         </section>
 
         <section className="MySammies__sammy__container">
-          <div className="MySammies__sammy--draggable" onClick={() => handleSammyClick('hero')}>
+          <div
+            className={`MySammies__sammy--draggable ${holding.type === 'hero' ? 'active' : ''} ${holding.orient}`}
+            onClick={() => handleSammyClick('hero')}
+          >
             <div className="MySammies__sammy bread left" />
             <div className="MySammies__sammy bread mid" />
             <div className="MySammies__sammy bread mid" />

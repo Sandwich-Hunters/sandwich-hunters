@@ -1,4 +1,5 @@
 @import './palette';
+@import './mixins';
 
 .MySammies {
 	align-items: center;
@@ -12,12 +13,16 @@
 	header {
 		align-self:flex-start;
 		margin:1rem 0 0 2rem;
-		z-index:123;
+		z-index:1;
 
 		.orient-button, .cancel-button {
+			@include noSelect;
 			cursor: pointer;
 			font-size: 2rem;
 			padding:1rem;
+		}
+		.orient-button.vertical {
+			transform: rotate(90deg);
 		}
 	}
 	&.green {
@@ -43,14 +48,6 @@
 	justify-content: center;
 }
 
-.MySammies__body.vertical {
-	align-items: flex-start;
-	.MySammies__sammy__container {
-		border:1px solid red;
-		transform: rotate(90deg);
-		z-index:1;
-	}
-}
 
 .MySammies__sammy__container {
 	// border:1px solid red;
@@ -64,9 +61,12 @@
 	align-items: center;
 	display: flex;
 	justify-content: center;
-	&:hover {
+	&:hover, &.active {
 		cursor:pointer;
 		transform: translate(-7px,-7px);
+	}
+	&.active.vertical  {
+		transform: rotate(90deg);
 	}
 }
 

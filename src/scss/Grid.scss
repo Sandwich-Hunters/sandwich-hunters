@@ -1,4 +1,5 @@
 @import './palette';
+@import './mixins';
 
 .EnemyGrid,
 .PlayerGrid {
@@ -56,6 +57,7 @@
   }
 
   span.GridSquare {
+		@include noSelect;
     align-items: center;
     background: $table;
     border: 1px solid $table__border;
@@ -116,6 +118,7 @@
   }
 
   &:hover {
+		border:1px solid red;
     background: none;
     cursor: pointer;
     transform: scale(1.1);
