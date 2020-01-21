@@ -11,6 +11,10 @@ if (!initialState) {
     ginghamColors: ['green', 'red', 'black', 'blue'],
     enemyGingham: 'red',
     playerGingham: 'blue',
+    holding: {
+      type: null, // wedge, sub, hoagie, grinder, hero
+      orient: null, // vertical or horizontal
+    },
   };
 }
 

@@ -12,6 +12,13 @@
 	header {
 		align-self:flex-start;
 		margin:1rem 0 0 2rem;
+		z-index:123;
+
+		.orient-button, .cancel-button {
+			cursor: pointer;
+			font-size: 2rem;
+			padding:1rem;
+		}
 	}
 	&.green {
 		background-image: url('../assets/green.png');
@@ -36,6 +43,15 @@
 	justify-content: center;
 }
 
+.MySammies__body.vertical {
+	align-items: flex-start;
+	.MySammies__sammy__container {
+		border:1px solid red;
+		transform: rotate(90deg);
+		z-index:1;
+	}
+}
+
 .MySammies__sammy__container {
 	// border:1px solid red;
 	padding:1rem;
@@ -48,6 +64,10 @@
 	align-items: center;
 	display: flex;
 	justify-content: center;
+	&:hover {
+		cursor:pointer;
+		transform: translate(-7px,-7px);
+	}
 }
 
 .MySammies__sammy {
